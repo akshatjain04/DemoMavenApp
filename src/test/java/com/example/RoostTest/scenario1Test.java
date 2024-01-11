@@ -15,66 +15,71 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 
 public class scenario1Test {
 
-     static {
+    static {
         RestAssured.baseURI = System.getenv("API_HOST");
-     }
+    }
 
     @Test
     @DisplayName("Find pet by tags")
-    public void findPetByTagsTest() {
+    public void findPetByTagsTest() throws Exception {
 
         // Read Payload from CSV File
-        File file = new File("scenario1Test.csv");
+        File file = new File("src/test/java/com/example/RoostTest/scenario1Test.csv");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
-        String[] headers = br.readLine().split("^|^", -1); 
+        String[] headersArray = br.readLine().split("^|^", -1);
 
-        while ((line = br.readLine()) != null) { 
-            String[] values = line.split("^|^", -1); 
+        while ((line = br.readLine()) != null) {
+            String[] values = line.split("^|^", -1);
             String method = values[0];
             String url = values[1];
-            String headers = jsonStringToMap(values[2]);
-            String requestBody = jsonStringToMap(values[3]);
+            Map<String, String> headers = jsonStringToMap(values[2]);
+            Map<String, String> requestBody = jsonStringToMap(values[3]);
             int responseCode = Integer.parseInt(values[4]);
-            String responseBody = jsonStringToMap(values[5]);
-            
-        given().
-            headers(headers).
-            body(requestBody).
-        when().
-            get(url).
-        then()
-            .assertThat()
-                .statusCode(responseCode)
-                .contentType(ContentType.JSON)
-            .and()
-                .body("tags", equalTo("test"))
-            .and()
-                .body("id", notNullValue())
-            .and()
-                .body("category", notNullValue())
-            .and()
-                .body("category.id", notNullValue())
-            .and()
-                .body("category.name", is(String.class))
-            .and()
-                .body("name", is(String.class))
-            .and()
-                .body("photoUrls", is(String.class))
-            .and()
-                .body("photoUrls.0", is(String.class))
-            .and()
-                .body("tags", notNullValue())
-            .and()
-                .body("tags.0", notNullValue())
-            .and()
-                .body("status", anyOf(equalTo("available"), equalTo("pending"), equalTo("sold")));
+            Map<String, String> responseBody = jsonStringToMap(values[5]);
+
+            given().headers(headers).body(requestBody).when().get(url).then()
+                    .assertThat()
+                    .statusCode(responseCode)
+                    .contentType(ContentType.JSON)
+                    .and()
+                    .body("tags", equalTo("test"))
+                    .and()
+                    .body("id", notNullValue())
+                    .and()
+                    .body("category", notNullValue())
+                    .and()
+                    .body("category.id", notNullValue())
+                    .and()
+                    .body("category.name", is(String.class))
+                    .and()
+                    .body("name", is(String.class))
+                    .and()
+                    .body("photoUrls", is(String.class))
+                    .and()
+                    .body("photoUrls.0", is(String.class))
+                    .and()
+                    .body("tags", notNullValue())
+                    .and()
+                    .body("tags.0", notNullValue())
+                    .and()
+                    .body("status", anyOf(equalTo("available"), equalTo("pending"), equalTo("sold")));
         }
+    }
+
+    private Map<String, String> jsonStringToMap(String jsonString) {
+        // Implement the logic to convert JSON string to Map
+        return null;
     }
 }

@@ -27,8 +27,8 @@ public class scenario2Test {
 
     @Test
     public void CreatePetWithParametersTest() {
-        
-        String fileName = "scenario2Test.csv";
+
+        String fileName = "src/test/java/com/example/RoostTest/scenario2Test.csv";
         String line = "";
         String cvsSplitBy = "^|^";
 

@@ -89,19 +89,19 @@ public class scenario3Test {
     @Test
     public void createPet() throws Exception {
         String API_HOST = System.getenv().get("API_HOST");
-        BufferedReader br = new BufferedReader(new FileReader("scenario3Test.csv"));
+        BufferedReader br = new BufferedReader(new FileReader("src/test/java/com/example/RoostTest/scenario0Test.csv"));
         String line;
         while ((line = br.readLine()) != null) {
             String[] values = line.split("^|^");
             if (values.length < 5)
-                continue;        
+                continue;
 
             String method = values[0];
             String url = values[1];
             Map<String, String> headers = jsonToMap(values[2]);
             Map<String, String> requestPayload = jsonToMap(values[3]);
             int expectedResponseCode = Integer.parseInt(values[4]);
-            Map<String, String> expectedResponsePayload = jsonToMap(values[5]);         
+            Map<String, String> expectedResponsePayload = jsonToMap(values[5]);
 
             if (method.equals("POST")) {
                 Response response = given().baseUri(API_HOST).headers(headers).body(requestPayload).log().all().when().post(url).then().extract().response();
@@ -109,7 +109,7 @@ public class scenario3Test {
                     response.then().body(entry.getKey(), equalTo(entry.getValue()));
                 }
                 response.then().statusCode(expectedResponseCode);
-            } 
+            }
             // Add other HTTP methods as needed
         }
         br.close();

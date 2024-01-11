@@ -15,10 +15,9 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import org.json.JSONObject;
 import static org.hamcrest.Matchers.*;
 
@@ -30,14 +29,15 @@ public class scenario0Test {
     }
 
     @Test
-    public void findPetByStatus() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("scenario0Test.csv"));
+    public void findPetByStatus() throws Exception {
+        System.out.println(RestAssured.baseURI);
+        BufferedReader reader = new BufferedReader(new FileReader(
+                "src/test/java/com/example/RoostTest/scenario0Test.csv"));
         String line = "";
-        reader.readLine(); //Reading headers line
+        reader.readLine(); // Reading headers line
 
         while ((line = reader.readLine()) != null) {
-            String[] columns = line.split("^|^");
-
+            String[] columns = line.split("\\^\\|\\^", -1);
             String method = columns[0];
             String url = columns[1];
             String req_headers = columns[2];
@@ -51,6 +51,7 @@ public class scenario0Test {
 
             if(method.equals("GET")){
                 RestAssured.given()
+                        .body(reqBody.toString())
                         .header("Content-Type", reqHeaders.getString("Content-Type"))
                         .get(url)
                         .then()
