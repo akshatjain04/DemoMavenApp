@@ -1,2 +1,2 @@
 METHOD^|^URL^|^REQ_HEADERS^|^REQ_BODY^|^RESPONSE_CODE^|^RESPONSE_BODY
-POST^|^/pet^|^{ "Content-Type": "application/json", "Authorization": "Bearer <token>" }^|^{ "id": 1, "name": "doggie", "status": "available" }^|^200^|^{ "id": 1, "name": "doggie", "status": "available", "message": "Pet added successfully" }
+POST^|^https://petstore.swagger.io/v2/pet^|^{ "Content-Type": "application/json", "Authorization": "Bearer <token>" }^|^{"id":0,"category":{"id":0,"name":"string"},"name":"doggie","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"}^|^200^|^{"id":9223372036854775807,"category":{"id":0,"name":"string"},"name":"doggie","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"}
