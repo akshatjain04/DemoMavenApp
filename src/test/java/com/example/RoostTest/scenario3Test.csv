@@ -1,0 +1,2 @@
+METHOD^|^URL^|^REQ_HEADERS^|^REQ_BODY^|^RESPONSE_CODE^|^RESPONSE_BODY
+POST^|^/pet^|^{ "Content-Type": "application/json", "Authorization": "Bearer <token>" }^|^{ "id": 1, "name": "doggie", "status": "available" }^|^200^|^{ "id": 1, "name": "doggie", "status": "available", "message": "Pet added successfully" }
