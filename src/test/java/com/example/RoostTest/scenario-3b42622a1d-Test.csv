@@ -1,0 +1,2 @@
+METHOD^|^URL^|^REQ_HEADERS^|^REQ_BODY^|^RESPONSE_CODE^|^RESPONSE_BODY
+POST^|^http://petstore.swagger.io/v2/pet^|^{"Content-Type": "application/json","Authorization": "Bearer xyz"}^|^{"id": 321,"name": "doggies","photoUrls": ["string"],"tags": [{"id": 1,"name": "string"}],"status": "available"}^|^200^|^{"id": 321, "name": "doggies", "status": "available", "message": "Pet added successfully"}
