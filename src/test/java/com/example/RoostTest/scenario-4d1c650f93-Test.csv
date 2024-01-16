@@ -1,0 +1,2 @@
+METHOD^|^URL^|^REQ_HEADERS^|^REQ_BODY^|^RESPONSE_CODE^|^RESPONSE_BODY
+GET^|^http://petstore.swagger.io/v2/pet/findByTags?tags=test^|^{"Accept": "application/json"}^|^{}^|^200^|^{"type": "array","items": {"[0].id": "","[0].category": {"id": "", "name": ""},"[0].name": "","[0].photoUrls": ["", ""],"[0].tags": [{"id": "", "name": ""}],"[0].status": ""}}

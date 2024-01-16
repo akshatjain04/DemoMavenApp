@@ -1,0 +1,2 @@
+METHOD^|^URL^|^REQ_HEADERS^|^REQ_BODY^|^RESPONSE_CODE^|^RESPONSE_BODY
+POST^|^/pet^|^{"type": "oauth2", "scopes": [{"scope": "write:pets", "description": "modify pets in your account"}, {"scope": "read:pets", "description": "read your pets"}]}^|^{ "id": "", "name": "doggie", "photoUrls": [], "tags":[{"id": "", "name": ""}], "status": "available" }^|^200^|^{"id": "", "name": "doggie", "photoUrls": [], "tags":[{"id": "", "name": ""}], "status": "available" }
